@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Sign-Up Today!</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <br>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+      <h1 class="text-center">Sign-Up Today!</h1>
+    </div>
+
+    <div class="row">
+
+      <!-- Sign-Up Card-->
+      <div class="col-lg-6">
+        <div class="card card-default">
+          <div class="card-header">
+            New Member Sign-Up
+          </div>
+          <div class="card-body">
+            <!-- Sign-up Form (note the various input "types")-->
+            <form method="POST" action="http://google.com">
+                
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Password</label>
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputAddress">Address</label>
+                      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" id="inputCity">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control">
+                          <option selected>AL</option>
+                          <option>AK</option>
+                          <option>AZ</option>
+                          <option>AR</option>
+                          <option>CA</option>
+                          <option>CO</option>
+                          <option>CT</option>
+                          <option>DE</option>
+                          <option>FL</option>
+                          <option>GA</option>
+                          <option>HI</option>
+                          <option>ID</option>
+                          <option>IL</option>
+                          <option>IN</option>
+                          <option>IA</option>
+                          <option>KS</option>
+                          <option>KY</option>
+                          <option>LA</option>
+                          <option>ME</option>
+                          <option>MD</option>
+                          <option>MA</option>
+                          <option>MI</option>
+                          <option>MN</option>
+                          <option>MS</option>
+                          <option>MO</option>
+                          <option>MT</option>
+                          <option>NE</option>
+                          <option>NV</option>
+                          <option>NH</option>
+                          <option>NJ</option>
+                          <option>NM</option>
+                          <option>NY</option>
+                          <option>NC</option>
+                          <option>ND</option>
+                          <option>OH</option>
+                          <option>OK</option>
+                          <option>OR</option>
+                          <option>PA</option>
+                          <option>RI</option>
+                          <option>SC</option>
+                          <option>SD</option>
+                          <option>TN</option>
+                          <option>TX</option>
+                          <option>UT</option>
+                          <option>VT</option>
+                          <option>VA</option>
+                          <option>WA</option>
+                          <option>WV</option>
+                          <option>WI</option>
+                          <option>WY</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="inputZip">Zip</label>
+                        <input type="text" class="form-control" id="inputZip">
+                      </div>
+                    </div>
+                  <!-- </form> -->
+              <div class="form-group row">
+                <label for="favteam-input">Favorite Team</label>
+                <select class="form-control team" onchange= "displaySeating()">
+                        <option value= "Atlanta">Atlanta Hawks</option>
+                        <option value= "Boston">Boston Celtics</option>
+                        <option value= "Brooklyn">Brooklyn Nets</option>
+                        <option value= "Charlotte">Charlotte Hornets</option>
+                        <option value= "Chicago">Chicago Bulls</option>
+                        <option value= "Cleveland">Cleveland Cavaliers</option>
+                        <option value= "Dallas">Dallas Mavericks</option>
+                        <option value= "Denver">Denver Nuggets</option>
+                        <option value= "Detroit">Detroit Pistons</option>
+                        <option value= "Golden">Golden State Warriors</option>
+                        <option value= "Houston">Houston Rockets</option>
+                        <option value= "Indiana">Indiana Pacers</option>
+                        <option value= "Clippers">Los Angeles Clippers</option>
+                        <option value= "Lakers">Los Angeles Lakers</option>
+                        <option value= "Memphis">Memphis Grizzlies</option>
+                        <option value= "Miami">Miami Heat</option>
+                        <option value= "Milwaukee">Milwaukee Bucks</option>
+                        <option value= "Minnesota">Minnesota Timberwolves</option>
+                        <option value= "Pelicans">New Orleans Pelicans</option>
+                        <option value= "Knicks">New York Knicks</option>
+                        <option value= "Oklahoma">Oklahoma City Thunder</option>
+                        <option value= "Orlando">Orlando Magic</option>
+                        <option value= "Philadelphia">Philadelphia 76ers</option>
+                        <option value= "Phoenix">Phoenix Suns</option>
+                        <option value= "Portland">Portland Trail Blazers</option>
+                        <option value= "Sacramento">Sacramento Kings</option>
+                        <option value= "San">San Antonio Spurs</option>
+                        <option value= "Toronto">Toronto Raptors</option>
+                        <option value= "Utah">Utah Jazz</option>
+                        <option value= "Washington">Washington Wizards</option>
+
+                        
+                </select>
+              </div>
+              <button class="btn btn-default" id="add-user" type="submit" onclick="tickets()">Submit</button>
+            </form>
+    
+          </div>
+        </div>
+      </div>
+
+      <!-- Most Recent Member Card -->
+      <div class="Img col-lg-6">
+          <img class="seatImg img-fluid"/>
+        <!-- <img src="assets/images/Atlanta.jpg"/> -->
+      </div>
+    
+         
+
+    </div>
+
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- JavaScript -->
+  <script>
+    // Capture Button Click
+    $("#add-user").on("click", function(event) {
+      // prevent page from refreshing when form tries to submit itself
+      event.preventDefault();
+      // Capture user inputs and store them into variables
+      var email = $("#inputEmail4").val().trim();
+      var password = $("#inputPassword4").val().trim();
+      var address = $("#inputAddress").val().trim();
+      var city = $("#inputCity").val().trim();
+      // Console log each of the user inputs to confirm we are receiving them
+      console.log(email);
+      console.log(password);
+      console.log(address);
+      console.log(city);
+      // Replaces the content in the "recent-member" div with the new info
+      $("#email-display").text(email);
+      $("#password-display").text(password);
+      $("#address-display").text(address);
+      $("#city-display").text(city);
+      // Clear sessionStorage
+      sessionStorage.clear();
+      // Store all content into sessionStorage
+      sessionStorage.setItem("email", email);
+      sessionStorage.setItem("password", password);
+      sessionStorage.setItem("address", address);
+      sessionStorage.setItem("city", city);
+    });
+    // By default display the content from sessionStorage
+    $("#email-display").text(sessionStorage.getItem("email"));
+    $("#password-display").text(sessionStorage.getItem("password"));
+    $("#address-display").text(sessionStorage.getItem("address"));
+    $("#city-display").text(sessionStorage.getItem("city"));
+    
+
+
+//click event on submission, on click call your function displaySeating
+$("#add-user").click(displaySeating);
+//displays the seating of selected team
+function displaySeating (){
+    var teamSeat = $(".team option:selected").val();
+    var img = "assets/images/" + teamSeat + ".jpg";
+    $(".seatImg").attr("src", img);
+}   
+function tickets(){
+    window.location="./index.html"
+}
+
+
+
+  </script>
+
+</body>
+
+</html>
