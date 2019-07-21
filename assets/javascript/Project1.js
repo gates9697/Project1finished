@@ -104,7 +104,6 @@ function validateEntry(event) {
 
     // testing email input
     if(index === 0) {
-      console.log("email");  //db
       var email = eValid($(this).val());    
       if(email == false || $(this).val().length === 0) {  // if failed req. or empty  
         invalidationText(invalMsg, $(this).get());
@@ -114,21 +113,17 @@ function validateEntry(event) {
 
     // testing password input
     if(index === 1) {
-      console.log("pw");  //db
       var invalPMsg = "Need a cap letter and a number";   // custom invalidation pw req.
       var pw = evalPw($(this).val());                     //   msg for passwords
       if(pw ==  false) {    // if failed req. (req. include password not empty)
         invalidationText(invalPMsg, $(this).get());
-        console.log($(this).val());  //db
-        console.log("^ above is pw value");
         tallies++;
       }
     }
 
     // testing team input
     if(index === 2) {
-      console.log("team");  //db
-      if($(this).val() === "Team") {                      // if empty
+      if($(this).val() === "Team") {                      // if entry empty
         invalidationText(invalMsg,  $(this).get());
         tallies++;
       } 
