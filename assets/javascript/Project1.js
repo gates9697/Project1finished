@@ -1,11 +1,12 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyCSPehQZO_iX-Q3hOMh2-Ypuzj_XftF-4c",
-    authDomain: "anotherproj-1cba9.firebaseapp.com",
-    databaseURL: "https://anotherproj-1cba9.firebaseio.com",
-    projectId: "anotherproj-1cba9",
-    storageBucket: "anotherproj-1cba9.appspot.com",
-    messagingSenderId: "493824705163",
-    appId: "1:493824705163:web:7fffaa9c1cc4123e"  };
+  apiKey: "AIzaSyDYLpe8h2FUgrC8HbkY3VuyrFhJLb2T8cE",
+  authDomain: "mytestproj-5b683.firebaseapp.com",
+  databaseURL: "https://mytestproj-5b683.firebaseio.com",
+  projectId: "mytestproj-5b683",
+  storageBucket: "mytestproj-5b683.appspot.com",
+  messagingSenderId: "87679041814",
+  appId: "1:87679041814:web:75dabb1bed76630e"
+};
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
@@ -14,8 +15,15 @@ var firebaseConfig = {
 function displaySeating (team){
 console.log (team)
 }
-    // Capture Button Click
-    $("#add-user").on("click", function(event) {
+    // on resolution of submit from form ID "user-signup"
+    $("#user-signup").submit(function(event) {                                  
+    
+      // stop submission of inputs if validation fail
+      var testingv = validateEntry(event);
+      if(testingv === false) {
+        return false;
+      }
+
       // prevent page from refreshing when form tries to submit itself
       event.preventDefault();
       // Capture user inputs and store them into variables
@@ -68,15 +76,144 @@ console.log (team)
 
 //click event on submission, on click call your function displaySeating
 $("#add-user").click(displaySeating);
+
 //displays the seating of selected team
 function displaySeating (){
-    var teamSeat = $(".team option:selected").val();
+  var teamSeat = $(".team option:selected").val();
+  // stop function if user did not select a team
+  if(teamSeat !== "Team") {
     var img = "assets/images/" + teamSeat + ".jpg";
     $(".seatImg").attr("src", img);
+  }
 }   
 function tickets(){
     // window.location="./login.html"
 }
+
+// checking each entry
+function validateEntry(event) {
+
+  // clear previous invalidation msg
+  $(".invalidation").empty();
+
+  var tallies = 0;                       // counter of fail validations
+  var invalMsg = "Invalid entry";
+  
+  $($('form').prop('elements')).each(function(index) {
+    console.info(this);  //db
+
+    // testing email input
+    if(index === 0) {
+      console.log("email");  //db
+      var email = eValid($(this).val());    
+      if(email == false || $(this).val().length === 0) {  // if failed req. or empty  
+        invalidationText(invalMsg, $(this).get());
+        tallies++;
+      }
+    }
+
+    // testing password input
+    if(index === 1) {
+      console.log("pw");  //db
+      var invalPMsg = "Need a cap letter and a number";   // custom invalidation pw req.
+      var pw = evalPw($(this).val());                     //   msg for passwords
+      if(pw ==  false) {    // if failed req. (req. include password not empty)
+        invalidationText(invalPMsg, $(this).get());
+        console.log($(this).val());  //db
+        console.log("^ above is pw value");
+        tallies++;
+      }
+    }
+
+    // testing team input
+    if(index === 2) {
+      console.log("team");  //db
+      if($(this).val() === "Team") {                      // if empty
+        invalidationText(invalMsg,  $(this).get());
+        tallies++;
+      } 
+    }
+  });
+
+  // tallies of zero means no fail validation
+  if(tallies === 0) {
+    return true;
+  } else {
+    return false;
+  } 
+}
+
+// injecting invalidation msg into DOM
+function invalidationText(msg, atCurrent) {
+  var invalidText = $("<div>");
+  invalidText.text(msg);
+  invalidText.css({"color":"red", "font-size":"15px"});
+  $($(atCurrent)).next().append(invalidText);
+}
+
+// validate email string, criteria for an valid email are as follow:
+// - has a at character '@'
+// - one of the common Top-Level Domain (TLD) name
+// - '@' must be before TLD name
+function eValid(argz) {
+
+                  // common TLD name .gov .edu .info .com .net .org
+  var patternz = [ /[@]/g, /com\b/i, /edu\b/i, /gov\b/i, 
+                        /info\b/i, /net\b/i, /org\b/i ];
+  var ind = [];   // index0 of '@' and index1 of TLD name
+                  // on email string
+  
+  for(var i = 0; i < 7; i++) {
+
+    if( i === 0
+        && argz.match(patternz[i]) !== null       // '@' exist          
+        && argz.match(patternz[i]).length < 2) {  // only one in string
+
+      // argz.match(patternz[i])[0] is '@'
+      // ind[0] now has the placement value of '@' on email string
+      ind.push(argz.indexOf(argz.match(patternz[i])[0]));
+    }
+
+    // latch on when a TLD matched
+    if( i > 0 && argz.match(patternz[i]) !== null) {
+
+      // argz.match(patternz[i])[0] is TLD without char '.'
+      // backtrack to locate index of '.'
+      // then push it onto ind[1] if a period actualy exist
+      var temp = argz.length - argz.match(patternz[i])[0].length;
+
+      if(argz[temp - 1] === '.') {
+        ind.push(temp-1);
+
+        // zero for the case of email that is:
+        // blahblah@.com
+        if((ind[1] - ind[0]) > 0) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+// validating password criteria:
+// contains a cap letter and a number, and entry not blank
+function evalPw(inputs) {
+  var upper = /[A-Z]/g;     // caps search
+  var num = /[0-9]/g;       // numericals search
+  var upperR = inputs.match(upper);             // caps search results
+  var numR = inputs.match(num);                 // numericals search results
+
+  if(upperR !== null && numR !== null && inputs.length !== 0 ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
+
 
 
 
